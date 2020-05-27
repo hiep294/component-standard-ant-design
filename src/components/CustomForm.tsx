@@ -4,7 +4,6 @@ import CustomInput from "./CustomForm/CustomInput";
 import CustomInputPassword from "./CustomForm/CustomInputPassword";
 import CustomInputFloatingLabel from "./CustomForm/CustomInputFloatingLabel";
 import CustomInput2 from "./CustomForm/CustomInput2";
-import ReCAPTCHA from "react-google-recaptcha";
 
 const layout = {
   labelCol: { span: 8 },
@@ -67,21 +66,18 @@ const CustomForm = () => {
         </Form.Item>
 
         <Form.Item
-          label="CustomPassword"
+          label={
+            <div>
+              CustomPassword with <b>Regex</b> pattern
+            </div>
+          }
           name="CustomPassword"
           rules={[
-            { required: true, message: "Please input your name!" },
-            ({ getFieldValue }) => ({
-              validator(rule, value) {
-                if (!value || value.length > 6) {
-                  // !value is to avoid the case of empty input
-                  return Promise.resolve();
-                }
-                return Promise.reject(
-                  "The passwords should include more than 6 character."
-                );
-              },
-            }),
+            {
+              required: true,
+              message: "Please input your name!",
+              pattern: /.{8,32}$/,
+            },
           ]}
         >
           <CustomInputPassword placeholder="With comparison" />

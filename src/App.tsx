@@ -2,8 +2,7 @@ import React from "react";
 import CustomForm from "./components/CustomForm";
 import CustomForm2 from "./components/CustomForm2";
 import ReCAPTCHA from "react-google-recaptcha";
-// @ts-ignore
-// import OtpInput from "react-otp-input";
+import CustomOTPInput from "./components/CustomOTPInput";
 
 function App() {
   return (
@@ -16,6 +15,11 @@ function App() {
       <div
         style={{ margin: "40px", border: "2px solid #333", padding: "20px" }}
       >
+        <div>
+          should define more ReCAPTCHA domain of production, in:
+          https://www.google.com/recaptcha/admin/site/:id/settings
+        </div>
+
         <div
           style={{
             border: "2px solid red",
@@ -36,13 +40,12 @@ function App() {
       <div
         style={{ margin: "40px", border: "2px solid #333", padding: "20px" }}
       >
-        {/* <div>
-          <OtpInput
-            onChange={(otp: any) => console.log(otp)}
-            numInputs={6}
-            separator={<span>-</span>}
-          />
-        </div> */}
+        <CustomOTPInput
+          length={6}
+          isNumberInput
+          autoFocus
+          onChangeOTP={(otp) => console.log("Number OTP: ", otp)}
+        />
       </div>
 
       <div
