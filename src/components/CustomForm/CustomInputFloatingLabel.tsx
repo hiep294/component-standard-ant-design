@@ -22,6 +22,7 @@ const CustomInputFloatingLabel = ({
           border: "none",
           borderBottom: "1px solid #333",
           boxShadow: "none",
+          borderRadius: "0",
         }}
         id={id}
         value={value}

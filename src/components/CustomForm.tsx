@@ -1,8 +1,10 @@
 import { Form, Input, Button, Checkbox } from "antd";
 import React, { useEffect } from "react";
-import CustomInput from "./Form/CustomInput";
-import CustomInputPassword from "./Form/CustomInputPassword";
-import CustomInputFloatingLabel from "./Form/CustomInputFloatingLabel";
+import CustomInput from "./CustomForm/CustomInput";
+import CustomInputPassword from "./CustomForm/CustomInputPassword";
+import CustomInputFloatingLabel from "./CustomForm/CustomInputFloatingLabel";
+import CustomInput2 from "./CustomForm/CustomInput2";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const layout = {
   labelCol: { span: 8 },
@@ -30,121 +32,141 @@ const CustomForm = () => {
   // console.log(form.getFieldValue(["username"]));
 
   return (
-    <Form
-      {...layout}
-      name="basic"
-      form={form}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item
-        label="CustomFloating"
-        name="custom-floating"
-        rules={[{ required: true, message: "Please input your name!" }]}
+    <>
+      <h1>CustomForm</h1>
+      <Form
+        {...layout}
+        name="basic"
+        form={form}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
       >
-        <CustomInputFloatingLabel />
-      </Form.Item>
+        <Form.Item
+          label="CustomInput2"
+          name="CustomInput2"
+          rules={[{ required: true, message: "Please input your name!" }]}
+        >
+          <CustomInput2 />
+        </Form.Item>
 
-      <Form.Item
-        label="Custom"
-        name="custom"
-        rules={[{ required: true, message: "Please input your name!" }]}
-      >
-        <CustomInput />
-      </Form.Item>
+        <Form.Item
+          label="CustomInputFloatingLabel"
+          name="CustomInputFloatingLabel"
+          rules={[{ required: true, message: "Please input your name!" }]}
+        >
+          <CustomInputFloatingLabel />
+        </Form.Item>
 
-      <Form.Item
-        label="CustomPassword"
-        name="customPassword"
-        rules={[
-          { required: true, message: "Please input your name!" },
-          ({ getFieldValue }) => ({
-            validator(rule, value) {
-              if (!value || value.length > 6) {
-                // !value is to avoid the case of empty input
-                return Promise.resolve();
-              }
-              return Promise.reject(
-                "The passwords should include more than 6 character."
-              );
+        <Form.Item
+          label="CustomInput"
+          name="CustomInput"
+          rules={[{ required: true, message: "Please input your name!" }]}
+        >
+          <CustomInput />
+        </Form.Item>
+
+        <Form.Item
+          label="CustomPassword"
+          name="CustomPassword"
+          rules={[
+            { required: true, message: "Please input your name!" },
+            ({ getFieldValue }) => ({
+              validator(rule, value) {
+                if (!value || value.length > 6) {
+                  // !value is to avoid the case of empty input
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  "The passwords should include more than 6 character."
+                );
+              },
+            }),
+          ]}
+        >
+          <CustomInputPassword placeholder="With comparison" />
+        </Form.Item>
+
+        <Form.Item
+          name="confirmCustomInputPassword"
+          label="Confirm CustomInputPassword"
+          // dependencies: if customPassword change, it will trigger validate confirmPassword
+          dependencies={["customPassword"]}
+          // hasFeedback: icons pass validate, or not pass validate
+          // hasFeedback
+          rules={[
+            {
+              required: true,
+              message: "Please confirm your password!",
             },
-          }),
-        ]}
-      >
-        <CustomInputPassword placeholder="With comparison" />
-      </Form.Item>
+            ({ getFieldValue }) => ({
+              validator(rule, value) {
+                if (!value || getFieldValue("customPassword") === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  "The two passwords that you entered do not match!"
+                );
+              },
+            }),
+          ]}
+        >
+          <CustomInputPassword />
+        </Form.Item>
 
-      <Form.Item
-        name="confirm"
-        label="Confirm Password"
-        // dependencies: if customPassword change, it will trigger validate confirmPassword
-        dependencies={["customPassword"]}
-        // hasFeedback: icons pass validate, or not pass validate
-        // hasFeedback
-        rules={[
-          {
-            required: true,
-            message: "Please confirm your password!",
-          },
-          ({ getFieldValue }) => ({
-            validator(rule, value) {
-              if (!value || getFieldValue("customPassword") === value) {
-                return Promise.resolve();
-              }
-              return Promise.reject(
-                "The two passwords that you entered do not match!"
-              );
+        <Form.Item
+          name="email"
+          label="E-mail validation"
+          rules={[
+            {
+              type: "email",
+              message: "The input is not valid E-mail!",
             },
-          }),
-        ]}
-      >
-        <CustomInputPassword />
-      </Form.Item>
+            {
+              required: true,
+              message: "Please input your E-mail!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
 
-      <Form.Item
-        name="email"
-        label="E-mail"
-        rules={[
-          {
-            type: "email",
-            message: "The input is not valid E-mail!",
-          },
-          {
-            required: true,
-            message: "Please input your E-mail!",
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
+        <Form.Item
+          label="Username"
+          name="username"
+          rules={[{ required: true, message: "Please input your username!" }]}
+        >
+          <Input />
+        </Form.Item>
 
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[{ required: true, message: "Please input your username!" }]}
-      >
-        <Input />
-      </Form.Item>
+        <Form.Item
+          label="Label in the left"
+          labelAlign="left"
+          name="leftLabel"
+          rules={[{ required: true, message: "Label in the left!" }]}
+        >
+          <Input placeholder="Label in the left!" />
+        </Form.Item>
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: "Please input your password!" }]}
-      >
-        <Input.Password />
-      </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: "Please input your password!" }]}
+        >
+          <Input.Password />
+        </Form.Item>
 
-      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
+        <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
 
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item {...tailLayout}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </>
   );
 };
 
