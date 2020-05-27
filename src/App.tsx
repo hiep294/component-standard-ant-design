@@ -1,59 +1,40 @@
 import React from "react";
-import CustomForm from "./components/CustomForm";
-import CustomForm2 from "./components/CustomForm2";
-import ReCAPTCHA from "react-google-recaptcha";
-import CustomOTPInput from "./components/CustomOTPInput";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import FormInputCaptchaOTPPage from "./pages/FormInputCaptchaOTPPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <>
-      <div
-        style={{ margin: "40px", border: "2px solid #333", padding: "20px" }}
-      >
-        <CustomForm />
-      </div>
-      <div
-        style={{ margin: "40px", border: "2px solid #333", padding: "20px" }}
-      >
-        <div>
-          should define more ReCAPTCHA domain of production, in:
-          https://www.google.com/recaptcha/admin/site/:id/settings
-        </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home - </Link>
+            </li>
+            <li>
+              <Link to="/form-input-captcha-otp">
+                Form - Input - CAPTCHA - OTP
+              </Link>
+            </li>
+          </ul>
+        </nav>
 
-        <div
-          style={{
-            border: "2px solid red",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <ReCAPTCHA
-            sitekey="6Le1qfwUAAAAAMgGrsmcpG3vYvlLS4Qcgbs3kgib"
-            onChange={(value) => {
-              console.log("check value:", value);
-            }}
-          />
-        </div>
+        {/* A <Switch> looks through its children <Route>s and
+        renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+          <Route path="/form-input-captcha-otp" exact>
+            <FormInputCaptchaOTPPage />
+          </Route>
+          {/* <Route path="/">
+            <Home />
+          </Route> */}
+        </Switch>
       </div>
-
-      <div
-        style={{ margin: "40px", border: "2px solid #333", padding: "20px" }}
-      >
-        <CustomOTPInput
-          length={6}
-          isNumberInput
-          autoFocus
-          onChangeOTP={(otp) => console.log("Number OTP: ", otp)}
-        />
-      </div>
-
-      <div
-        style={{ margin: "40px", border: "2px solid #333", padding: "20px" }}
-      >
-        <CustomForm2 />
-      </div>
-    </>
+    </Router>
   );
 }
 

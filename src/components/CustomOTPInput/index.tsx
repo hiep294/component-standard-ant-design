@@ -31,7 +31,6 @@ export function CustomOTPInput(props: OTPInputProps) {
     onChangeOTP,
     inputClassName,
     inputStyle,
-    ...rest
   } = props;
 
   const [activeInput, setActiveInput] = useState(0);
@@ -176,28 +175,26 @@ export function CustomOTPInput(props: OTPInputProps) {
   );
 
   return (
-    <div {...rest}>
-      <div className="container_" style={{ display: "flex" }}>
-        {Array(length)
-          .fill("")
-          .map((_, index) => (
-            <SingleInput
-              key={`SingleInput-${index}`}
-              focus={activeInput === index}
-              autoFocus={autoFocus}
-              value={otpValues && otpValues[index]}
-              onFocus={handleOnFocus(index)}
-              onChange={handleOnChange}
-              onKeyDown={handleOnKeyDown}
-              onBlur={onBlur}
-              onPaste={handleOnPaste}
-              style={inputStyle}
-              className={inputClassName}
-              disabled={disabled}
-            />
-          ))}
-      </div>
-    </div>
+    <>
+      {Array(length)
+        .fill("")
+        .map((_, index) => (
+          <SingleInput
+            key={`SingleInput-${index}`}
+            focus={activeInput === index}
+            autoFocus={autoFocus}
+            value={otpValues && otpValues[index]}
+            onFocus={handleOnFocus(index)}
+            onChange={handleOnChange}
+            onKeyDown={handleOnKeyDown}
+            onBlur={onBlur}
+            onPaste={handleOnPaste}
+            style={inputStyle}
+            className={inputClassName}
+            disabled={disabled}
+          />
+        ))}
+    </>
   );
 }
 
