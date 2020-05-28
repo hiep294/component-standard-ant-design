@@ -2,7 +2,7 @@ import React from "react";
 import { Input } from "antd";
 
 const CustomInput2 = ({
-  placeholder = "Will be fine...",
+  placeholder = "Just custom style...",
   id = "basic",
   // does not need to pass a value if using Form
   value = "",

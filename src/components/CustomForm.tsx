@@ -1,10 +1,20 @@
-import { Form, Input, Button, Checkbox, Tooltip } from "antd";
+import { Form, Input, Button, Checkbox, Tooltip, Select } from "antd";
 import React, { useEffect } from "react";
 import CustomInput from "./CustomForm/CustomInput";
 import CustomInputPassword from "./CustomForm/CustomInputPassword";
 import CustomInputFloatingLabel from "./CustomForm/CustomInputFloatingLabel";
 import CustomInput2 from "./CustomForm/CustomInput2";
 import { UserOutlined, InfoCircleOutlined } from "@ant-design/icons";
+
+const { Option } = Select;
+
+const childrenSelector: Array<any> = [];
+for (let i = 10; i < 36; i++) {
+  childrenSelector.push(
+    // @ts-ignore
+    <Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>
+  );
+}
 
 const layout = {
   labelCol: { span: 8 },
@@ -16,6 +26,7 @@ const tailLayout = {
 
 const CustomForm = () => {
   const [form] = Form.useForm();
+  const [form2] = Form.useForm();
 
   const onFinish = (values: any) => {
     console.log("Success:", values);
@@ -33,7 +44,62 @@ const CustomForm = () => {
 
   return (
     <>
-      <h1>CustomForm</h1>
+      <h1>
+        CustomForm: Target input/select value with property "name" of Form.Item
+      </h1>
+      <div>
+        Docs: using hook `const [form] = Form.useForm()` to create form ref.
+        read more code for setting up
+      </div>
+      <div>
+        To set field: form.setFieldsValue(object); object with keys are names of
+        Form.Item
+      </div>
+      <div>To get a field: form.getFieldValue(name)</div>
+      <div>
+        To get many fields: form.getFieldsValue(["customPassword", "email",
+        "any"]) => object
+      </div>
+      {/* FORM 2 */}
+      <Form
+        {...layout}
+        name="basic2"
+        form={form2}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+      >
+        <Form.Item
+          label="MultipleSelect1"
+          name="MultipleSelect1"
+          rules={[{ required: true, message: "Please input your name!" }]}
+        >
+          <Select
+            mode="multiple"
+            style={{ width: "100%" }}
+            placeholder="Please select"
+            // defaultValue={["a10", "c12"]}
+            onChange={(values) =>
+              console.log(form2.getFieldValue("MultipleSelect1"))
+            }
+          >
+            {childrenSelector}
+          </Select>
+        </Form.Item>
+
+        <Form.Item {...tailLayout} name="remember2" valuePropName="checked">
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+
+        <Form.Item {...tailLayout}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+
+      {/* FORM  */}
+
       <Form
         {...layout}
         name="basic"
@@ -42,6 +108,7 @@ const CustomForm = () => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
+        <div style={{ border: "1px solid black", marginBottom: "20px" }} />
         <Form.Item
           label="PrefixAndSuffixCustom2"
           name="PrefixAndSuffixCustom2"

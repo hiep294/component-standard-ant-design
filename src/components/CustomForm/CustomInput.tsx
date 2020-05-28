@@ -1,6 +1,10 @@
 import React from "react";
 import { Input } from "antd";
 
+type CustomInputType = typeof Input & {
+  label?: string;
+};
+
 const CustomInput = ({
   label = "Label",
   placeholder = "Design: a tag div of label above this Input tag, does not need to pass any ID",
@@ -10,7 +14,7 @@ const CustomInput = ({
   // does not need to pass a onChange if using Form
   onChange = () => {},
   ...rest
-}) => {
+}: CustomInputType) => {
   return (
     <div style={{ position: "relative" }}>
       <label

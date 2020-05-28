@@ -1,6 +1,6 @@
 import React from "react";
 import { CustomOTPInput } from "../components/CustomOTPInput";
-import ReCAPTCHA from "react-google-recaptcha";
+// import ReCAPTCHA from "react-google-recaptcha";
 import CustomForm from "../components/CustomForm";
 
 const FormInputCaptchaOTPPage = () => {
@@ -27,12 +27,13 @@ const FormInputCaptchaOTPPage = () => {
             justifyContent: "center",
           }}
         >
-          <ReCAPTCHA
+          <div>uncomment in code to use ReCAPTCHA</div>
+          {/* <ReCAPTCHA
             sitekey="6Le1qfwUAAAAAMgGrsmcpG3vYvlLS4Qcgbs3kgib"
             onChange={(value) => {
               console.log("check value:", value);
             }}
-          />
+          /> */}
         </div>
       </div>
 
