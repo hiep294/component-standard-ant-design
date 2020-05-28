@@ -7,7 +7,6 @@ interface CustomInputInterface extends InputProps {
 }
 
 const CustomInput = ({
-  placeholder = "Design: a tag div of label above this Input tag, does not need to pass any ID",
   label = "label",
   ...otherProps
 }: CustomInputInterface) => {
@@ -20,7 +19,10 @@ const CustomInput = ({
         {label}
       </label>
       <Input
-        placeholder={placeholder}
+        placeholder={
+          otherProps.placeholder ||
+          "Design: a tag div of label above this Input tag, does not need to pass any ID"
+        }
         style={{ paddingTop: "20px" }}
         {...otherProps}
       />
