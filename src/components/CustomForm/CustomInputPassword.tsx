@@ -12,9 +12,12 @@ const CustomInputPassword = ({
 }) => {
   return (
     <div style={{ position: "relative" }}>
-      <div style={{ position: "absolute", zIndex: 2, paddingLeft: "11px" }}>
+      <label
+        htmlFor={id}
+        style={{ position: "absolute", zIndex: 2, paddingLeft: "11px" }}
+      >
         {label}
-      </div>
+      </label>
       <Input.Password
         placeholder={placeholder}
         style={{ paddingTop: "20px" }}

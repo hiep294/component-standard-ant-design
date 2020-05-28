@@ -9,18 +9,23 @@ const CustomInput = ({
   value = "",
   // does not need to pass a onChange if using Form
   onChange = () => {},
+  ...rest
 }) => {
   return (
     <div style={{ position: "relative" }}>
-      <div style={{ position: "absolute", zIndex: 2, paddingLeft: "11px" }}>
+      <label
+        htmlFor={id}
+        style={{ position: "absolute", zIndex: 2, paddingLeft: "11px" }}
+      >
         {label}
-      </div>
+      </label>
       <Input
         placeholder={placeholder}
         style={{ paddingTop: "20px" }}
         id={id}
         value={value}
         onChange={onChange}
+        {...rest}
       />
     </div>
   );

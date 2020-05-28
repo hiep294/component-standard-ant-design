@@ -1,9 +1,10 @@
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button, Checkbox, Tooltip } from "antd";
 import React, { useEffect } from "react";
 import CustomInput from "./CustomForm/CustomInput";
 import CustomInputPassword from "./CustomForm/CustomInputPassword";
 import CustomInputFloatingLabel from "./CustomForm/CustomInputFloatingLabel";
 import CustomInput2 from "./CustomForm/CustomInput2";
+import { UserOutlined, InfoCircleOutlined } from "@ant-design/icons";
 
 const layout = {
   labelCol: { span: 8 },
@@ -42,6 +43,50 @@ const CustomForm = () => {
         onFinishFailed={onFinishFailed}
       >
         <Form.Item
+          label="PrefixAndSuffixCustom2"
+          name="PrefixAndSuffixCustom2"
+          rules={[{ required: true, message: "Please input your name!" }]}
+        >
+          <CustomInput
+            placeholder="Enter your username"
+            prefix="￥"
+            suffix="RMB"
+          />
+        </Form.Item>
+
+        <Form.Item
+          label="PrefixAndSuffixCustom"
+          name="PrefixAndSuffixCustom"
+          rules={[{ required: true, message: "Please input your name!" }]}
+        >
+          <CustomInput
+            placeholder="Enter your username"
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            suffix={
+              <Tooltip title="Extra information">
+                <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
+              </Tooltip>
+            }
+          />
+        </Form.Item>
+
+        <Form.Item
+          label="PrefixAndSuffix"
+          name="PrefixAndSuffix"
+          rules={[{ required: true, message: "Please input your name!" }]}
+        >
+          <Input
+            placeholder="Enter your username"
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            suffix={
+              <Tooltip title="Extra information">
+                <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
+              </Tooltip>
+            }
+          />
+        </Form.Item>
+
+        <Form.Item
           label="CustomInput2"
           name="CustomInput2"
           rules={[{ required: true, message: "Please input your name!" }]}
@@ -65,6 +110,8 @@ const CustomForm = () => {
           <CustomInput />
         </Form.Item>
 
+        <div style={{ border: "1px solid black", marginBottom: "20px" }} />
+
         <Form.Item
           label={
             <div>
@@ -75,12 +122,12 @@ const CustomForm = () => {
           rules={[
             {
               required: true,
-              message: "Please input your name!",
-              pattern: /.{8,32}$/,
+              message: "Please input larger than 4!",
+              pattern: /.{4,32}$/,
             },
           ]}
         >
-          <CustomInputPassword placeholder="With comparison" />
+          <CustomInputPassword placeholder="With regex pattern" />
         </Form.Item>
 
         <Form.Item
@@ -107,8 +154,10 @@ const CustomForm = () => {
             }),
           ]}
         >
-          <CustomInputPassword />
+          <CustomInputPassword placeholder="Two message: one is required, one is not the same as password" />
         </Form.Item>
+
+        <div style={{ border: "1px solid black", marginBottom: "20px" }} />
 
         <Form.Item
           name="email"
