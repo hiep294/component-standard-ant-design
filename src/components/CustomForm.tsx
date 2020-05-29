@@ -12,8 +12,9 @@ const { Option } = Select;
 const childrenSelector: Array<any> = [];
 for (let i = 10; i < 36; i++) {
   childrenSelector.push(
-    // @ts-ignore
-    <Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>
+    <Option key={i.toString(36) + i} value={i.toString(36) + i}>
+      {i.toString(36) + i}
+    </Option>
   );
 }
 
@@ -70,8 +71,59 @@ const CustomForm = () => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
+        <h4>Multiple SelectCustom SuffixIcon WithoutLabel</h4>
         <Form.Item
-          label="MultipleSelectCustom"
+          label=""
+          name="MultipleSelectCustomSuffixIconWithoutLabel"
+          rules={[{ required: true, message: "Please input your name!" }]}
+        >
+          <CustomSelect
+            mode="multiple"
+            style={{ width: "100%" }}
+            placeholder="Please select"
+            onChange={(values) =>
+              console.log(
+                form2.getFieldValue(
+                  "MultipleSelectCustomSuffixIconWithoutLabel"
+                )
+              )
+            }
+            showArrow
+            suffixIcon={
+              <>
+                <div>I</div>
+              </>
+            }
+          >
+            {childrenSelector}
+          </CustomSelect>
+        </Form.Item>
+
+        <Form.Item
+          label="MultipleSelect Custom suffixIcon"
+          name="MultipleSelectCustomSuffixIcon"
+          rules={[{ required: true, message: "Please input your name!" }]}
+        >
+          <CustomSelect
+            mode="multiple"
+            style={{ width: "100%" }}
+            placeholder="Please select"
+            onChange={(values) =>
+              console.log(form2.getFieldValue("MultipleSelectCustomSuffixIcon"))
+            }
+            showArrow
+            suffixIcon={
+              <>
+                <div>DE</div>
+              </>
+            }
+          >
+            {childrenSelector}
+          </CustomSelect>
+        </Form.Item>
+
+        <Form.Item
+          label="MultipleSelect Custom"
           name="MultipleSelectCustom"
           rules={[{ required: true, message: "Please input your name!" }]}
         >
@@ -82,14 +134,15 @@ const CustomForm = () => {
             onChange={(values) =>
               console.log(form2.getFieldValue("MultipleSelectCustom"))
             }
+            showArrow
           >
             {childrenSelector}
           </CustomSelect>
         </Form.Item>
 
         <Form.Item
-          label="MultipleSelectDefault"
-          name="MultipleSelectDefault"
+          label="MultipleSelect Standard"
+          name="MultipleSelectStandard"
           rules={[{ required: true, message: "Please input your name!" }]}
         >
           <Select
@@ -98,8 +151,9 @@ const CustomForm = () => {
             placeholder="Please select"
             // defaultValue={["a10", "c12"]}
             onChange={(values) =>
-              console.log(form2.getFieldValue("MultipleSelectDefault"))
+              console.log(form2.getFieldValue("MultipleSelectStandard"))
             }
+            showArrow
           >
             {childrenSelector}
           </Select>

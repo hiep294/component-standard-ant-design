@@ -6,25 +6,22 @@ interface CustomInputInterface extends InputProps {
   label?: string;
 }
 
-const CustomInput = ({
-  label = "label",
-  ...otherProps
-}: CustomInputInterface) => {
+const CustomInput = (props: CustomInputInterface) => {
   return (
     <div style={{ position: "relative" }}>
       <label
-        htmlFor={otherProps.id}
+        htmlFor={props.id}
         style={{ position: "absolute", zIndex: 2, paddingLeft: "11px" }}
       >
-        {label}
+        {props.label || "Label"}
       </label>
       <Input
         placeholder={
-          otherProps.placeholder ||
+          props.placeholder ||
           "Design: a tag div of label above this Input tag, does not need to pass any ID"
         }
+        {...props}
         style={{ paddingTop: "20px" }}
-        {...otherProps}
       />
     </div>
   );
