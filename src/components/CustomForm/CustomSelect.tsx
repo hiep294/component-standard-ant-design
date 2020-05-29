@@ -1,23 +1,14 @@
 import React from "react";
 import { Select } from "antd";
+import { SelectProps } from "antd/lib/select";
+import { valueType } from "antd/lib/statistic/utils";
 
-type CustomSelectProps = typeof Select & {
-  label: string;
-};
+interface CustomSelectInterface extends SelectProps<valueType> {
+  label?: string;
+}
 
-const CustomSelect = (props: CustomSelectProps) => {
-  return (
-    <Select
-      mode="multiple"
-      style={{ width: "100%" }}
-      placeholder="Please select"
-      // defaultValue={["a10", "c12"]}
-      onChange={
-        (values) => {}
-        // console.log(form2.getFieldValue("MultipleSelect1"))
-      }
-    />
-  );
+const CustomSelect = (props: CustomSelectInterface) => {
+  return <Select {...props} />;
 };
 
 export default CustomSelect;

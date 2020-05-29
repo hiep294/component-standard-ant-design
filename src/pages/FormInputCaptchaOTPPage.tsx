@@ -44,10 +44,13 @@ const FormInputCaptchaOTPPage = () => {
           className="container_"
           style={{
             display: "flex",
+            flexDirection: "column",
             border: "1px solid #333",
             justifyContent: "center",
+            alignItems: "center",
           }}
         >
+          <h3>OPT input</h3>
           <CustomOTPInput
             length={6}
             isNumberInput

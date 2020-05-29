@@ -5,6 +5,7 @@ import CustomInputPassword from "./CustomForm/CustomInputPassword";
 import CustomInputFloatingLabel from "./CustomForm/CustomInputFloatingLabel";
 import CustomInput2 from "./CustomForm/CustomInput2";
 import { UserOutlined, InfoCircleOutlined } from "@ant-design/icons";
+import CustomSelect from "./CustomForm/CustomSelect";
 
 const { Option } = Select;
 
@@ -52,8 +53,8 @@ const CustomForm = () => {
         read more code for setting up
       </div>
       <div>
-        To set field: form.setFieldsValue(object); object with keys are names of
-        Form.Item
+        To set field: form.setFieldsValue(object); object with keys which are
+        "name" properties of Form.Item
       </div>
       <div>To get a field: form.getFieldValue(name)</div>
       <div>
@@ -70,17 +71,34 @@ const CustomForm = () => {
         onFinishFailed={onFinishFailed}
       >
         <Form.Item
-          label="MultipleSelect1"
-          name="MultipleSelect1"
+          label="MultipleSelectCustom"
+          name="MultipleSelectCustom"
+          rules={[{ required: true, message: "Please input your name!" }]}
+        >
+          <CustomSelect
+            mode="multiple"
+            style={{ width: "100%" }}
+            placeholder="Please select"
+            onChange={(values) =>
+              console.log(form2.getFieldValue("MultipleSelectCustom"))
+            }
+          >
+            {childrenSelector}
+          </CustomSelect>
+        </Form.Item>
+
+        <Form.Item
+          label="MultipleSelectDefault"
+          name="MultipleSelectDefault"
           rules={[{ required: true, message: "Please input your name!" }]}
         >
           <Select
             mode="multiple"
-            style={{ width: "100%" }}
+            // style={{ width: "100%" }}
             placeholder="Please select"
             // defaultValue={["a10", "c12"]}
             onChange={(values) =>
-              console.log(form2.getFieldValue("MultipleSelect1"))
+              console.log(form2.getFieldValue("MultipleSelectDefault"))
             }
           >
             {childrenSelector}
@@ -138,7 +156,7 @@ const CustomForm = () => {
         </Form.Item>
 
         <Form.Item
-          label="PrefixAndSuffix"
+          label="PrefixAndSuffix Standard"
           name="PrefixAndSuffix"
           rules={[{ required: true, message: "Please input your name!" }]}
         >
@@ -223,6 +241,10 @@ const CustomForm = () => {
         >
           <CustomInputPassword placeholder="Two message: one is required, one is not the same as password" />
         </Form.Item>
+        <p style={{ color: "#555" }}>
+          "Confirm CustomInputPassword" can show two messages: 1 is required
+          field, 2 is that not matching to CustomInputPassword
+        </p>
 
         <div style={{ border: "1px solid black", marginBottom: "20px" }} />
 

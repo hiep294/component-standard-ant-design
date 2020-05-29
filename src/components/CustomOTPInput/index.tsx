@@ -175,7 +175,7 @@ export function CustomOTPInput(props: OTPInputProps) {
   );
 
   return (
-    <>
+    <div>
       {Array(length)
         .fill("")
         .map((_, index) => (
@@ -194,7 +194,7 @@ export function CustomOTPInput(props: OTPInputProps) {
             disabled={disabled}
           />
         ))}
-    </>
+    </div>
   );
 }
 
