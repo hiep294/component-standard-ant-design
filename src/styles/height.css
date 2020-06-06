@@ -1,0 +1,5 @@
+/* height used for spacer, example: add more space in the bottom of form input without setting margin of it */
+
+.height-24 {
+  height: 24px;
+}

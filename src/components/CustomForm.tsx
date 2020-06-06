@@ -1,11 +1,11 @@
-import { Form, Input, Button, Checkbox, Tooltip, Select } from "antd";
-import React, { useEffect } from "react";
-import CustomInput from "./CustomForm/CustomInput";
-import CustomInputPassword from "./CustomForm/CustomInputPassword";
-import CustomInputFloatingLabel from "./CustomForm/CustomInputFloatingLabel";
-import CustomInput2 from "./CustomForm/CustomInput2";
-import { UserOutlined, InfoCircleOutlined } from "@ant-design/icons";
-import CustomSelect from "./CustomForm/CustomSelect";
+import { Form, Input, Button, Checkbox, Tooltip, Select } from 'antd';
+import React, { useEffect } from 'react';
+import CustomInput from './CustomForm/CustomInput';
+import CustomInputPassword from './CustomForm/CustomInputPassword';
+import CustomInputFloatingLabel from './CustomForm/CustomInputFloatingLabel';
+import CustomInput2 from './CustomForm/CustomInput2';
+import { UserOutlined, InfoCircleOutlined } from '@ant-design/icons';
+import CustomSelect from './CustomForm/CustomSelect';
 
 const { Option } = Select;
 
@@ -23,7 +23,11 @@ const layout = {
   wrapperCol: { span: 16 },
 };
 const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
+  // layout for btn Submit in the tail of form
+  wrapperCol: {
+    offset: 8, // turn off layout
+    span: 16,
+  },
 };
 
 const CustomForm = () => {
@@ -31,11 +35,11 @@ const CustomForm = () => {
   const [form2] = Form.useForm();
 
   const onFinish = (values: any) => {
-    console.log("Success:", values);
+    console.log('Success:', values);
   };
 
   const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
+    console.log('Failed:', errorInfo);
   };
 
   useEffect(() => {
@@ -75,16 +79,16 @@ const CustomForm = () => {
         <Form.Item
           label=""
           name="MultipleSelectCustomSuffixIconWithoutLabel"
-          rules={[{ required: true, message: "Please input your name!" }]}
+          rules={[{ required: true, message: 'Please input your name!' }]}
         >
           <CustomSelect
             mode="multiple"
-            style={{ width: "100%" }}
+            style={{ width: '100%' }}
             placeholder="Please select"
             onChange={(values) =>
               console.log(
                 form2.getFieldValue(
-                  "MultipleSelectCustomSuffixIconWithoutLabel"
+                  'MultipleSelectCustomSuffixIconWithoutLabel'
                 )
               )
             }
@@ -99,17 +103,21 @@ const CustomForm = () => {
           </CustomSelect>
         </Form.Item>
 
+        <div className="height-24" style={{ border: '1px solid red' }}>
+          add more height: + 24px
+        </div>
+
         <Form.Item
           label="MultipleSelect Custom suffixIcon"
           name="MultipleSelectCustomSuffixIcon"
-          rules={[{ required: true, message: "Please input your name!" }]}
+          rules={[{ required: true, message: 'Please input your name!' }]}
         >
           <CustomSelect
             mode="multiple"
-            style={{ width: "100%" }}
+            style={{ width: '100%' }}
             placeholder="Please select"
             onChange={(values) =>
-              console.log(form2.getFieldValue("MultipleSelectCustomSuffixIcon"))
+              console.log(form2.getFieldValue('MultipleSelectCustomSuffixIcon'))
             }
             showArrow
             suffixIcon={
@@ -125,14 +133,14 @@ const CustomForm = () => {
         <Form.Item
           label="MultipleSelect Custom"
           name="MultipleSelectCustom"
-          rules={[{ required: true, message: "Please input your name!" }]}
+          rules={[{ required: true, message: 'Please input your name!' }]}
         >
           <CustomSelect
             mode="multiple"
-            style={{ width: "100%" }}
+            style={{ width: '100%' }}
             placeholder="Please select"
             onChange={(values) =>
-              console.log(form2.getFieldValue("MultipleSelectCustom"))
+              console.log(form2.getFieldValue('MultipleSelectCustom'))
             }
             showArrow
           >
@@ -143,7 +151,7 @@ const CustomForm = () => {
         <Form.Item
           label="MultipleSelect Standard"
           name="MultipleSelectStandard"
-          rules={[{ required: true, message: "Please input your name!" }]}
+          rules={[{ required: true, message: 'Please input your name!' }]}
         >
           <Select
             mode="multiple"
@@ -151,7 +159,7 @@ const CustomForm = () => {
             placeholder="Please select"
             // defaultValue={["a10", "c12"]}
             onChange={(values) =>
-              console.log(form2.getFieldValue("MultipleSelectStandard"))
+              console.log(form2.getFieldValue('MultipleSelectStandard'))
             }
             showArrow
           >
@@ -180,11 +188,11 @@ const CustomForm = () => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
-        <div style={{ border: "1px solid black", marginBottom: "20px" }} />
+        <div style={{ border: '1px solid black', marginBottom: '20px' }} />
         <Form.Item
           label="PrefixAndSuffixCustom2"
           name="PrefixAndSuffixCustom2"
-          rules={[{ required: true, message: "Please input your name!" }]}
+          rules={[{ required: true, message: 'Please input your name!' }]}
         >
           <CustomInput
             placeholder="Enter your username"
@@ -196,14 +204,14 @@ const CustomForm = () => {
         <Form.Item
           label="PrefixAndSuffixCustom"
           name="PrefixAndSuffixCustom"
-          rules={[{ required: true, message: "Please input your name!" }]}
+          rules={[{ required: true, message: 'Please input your name!' }]}
         >
           <CustomInput
             placeholder="Enter your username"
             prefix={<UserOutlined className="site-form-item-icon" />}
             suffix={
               <Tooltip title="Extra information">
-                <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
+                <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
               </Tooltip>
             }
           />
@@ -212,14 +220,14 @@ const CustomForm = () => {
         <Form.Item
           label="PrefixAndSuffix Standard"
           name="PrefixAndSuffix"
-          rules={[{ required: true, message: "Please input your name!" }]}
+          rules={[{ required: true, message: 'Please input your name!' }]}
         >
           <Input
             placeholder="Enter your username"
             prefix={<UserOutlined className="site-form-item-icon" />}
             suffix={
               <Tooltip title="Extra information">
-                <InfoCircleOutlined style={{ color: "rgba(0,0,0,.45)" }} />
+                <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
               </Tooltip>
             }
           />
@@ -228,7 +236,7 @@ const CustomForm = () => {
         <Form.Item
           label="CustomInput2"
           name="CustomInput2"
-          rules={[{ required: true, message: "Please input your name!" }]}
+          rules={[{ required: true, message: 'Please input your name!' }]}
         >
           <CustomInput2 />
         </Form.Item>
@@ -236,7 +244,7 @@ const CustomForm = () => {
         <Form.Item
           label="CustomInputFloatingLabel"
           name="CustomInputFloatingLabel"
-          rules={[{ required: true, message: "Please input your name!" }]}
+          rules={[{ required: true, message: 'Please input your name!' }]}
         >
           <CustomInputFloatingLabel />
         </Form.Item>
@@ -244,12 +252,12 @@ const CustomForm = () => {
         <Form.Item
           label="CustomInput"
           name="CustomInput"
-          rules={[{ required: true, message: "Please input your name!" }]}
+          rules={[{ required: true, message: 'Please input your name!' }]}
         >
           <CustomInput />
         </Form.Item>
 
-        <div style={{ border: "1px solid black", marginBottom: "20px" }} />
+        <div style={{ border: '1px solid black', marginBottom: '20px' }} />
 
         <Form.Item
           label={
@@ -261,7 +269,7 @@ const CustomForm = () => {
           rules={[
             {
               required: true,
-              message: "Please input larger than 4!",
+              message: 'Please input larger than 4!',
               pattern: /.{4,32}$/,
             },
           ]}
@@ -273,21 +281,21 @@ const CustomForm = () => {
           name="confirmCustomInputPassword"
           label="Confirm CustomInputPassword"
           // dependencies: if customPassword change, it will trigger validate confirmPassword
-          dependencies={["customPassword"]}
+          dependencies={['customPassword']}
           // hasFeedback: icons pass validate, or not pass validate
           // hasFeedback
           rules={[
             {
               required: true,
-              message: "Please confirm your password!",
+              message: 'Please confirm your password!',
             },
             ({ getFieldValue }) => ({
               validator(rule, value) {
-                if (!value || getFieldValue("customPassword") === value) {
+                if (!value || getFieldValue('customPassword') === value) {
                   return Promise.resolve();
                 }
                 return Promise.reject(
-                  "The two passwords that you entered do not match!"
+                  'The two passwords that you entered do not match!'
                 );
               },
             }),
@@ -295,24 +303,24 @@ const CustomForm = () => {
         >
           <CustomInputPassword placeholder="Two message: one is required, one is not the same as password" />
         </Form.Item>
-        <p style={{ color: "#555" }}>
+        <p style={{ color: '#555' }}>
           "Confirm CustomInputPassword" can show two messages: 1 is required
           field, 2 is that not matching to CustomInputPassword
         </p>
 
-        <div style={{ border: "1px solid black", marginBottom: "20px" }} />
+        <div style={{ border: '1px solid black', marginBottom: '20px' }} />
 
         <Form.Item
           name="email"
           label="E-mail validation"
           rules={[
             {
-              type: "email",
-              message: "The input is not valid E-mail!",
+              type: 'email',
+              message: 'The input is not valid E-mail!',
             },
             {
               required: true,
-              message: "Please input your E-mail!",
+              message: 'Please input your E-mail!',
             },
           ]}
         >
@@ -322,7 +330,7 @@ const CustomForm = () => {
         <Form.Item
           label="Username"
           name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}
+          rules={[{ required: true, message: 'Please input your username!' }]}
         >
           <Input />
         </Form.Item>
@@ -331,7 +339,7 @@ const CustomForm = () => {
           label="Label in the left"
           labelAlign="left"
           name="leftLabel"
-          rules={[{ required: true, message: "Label in the left!" }]}
+          rules={[{ required: true, message: 'Label in the left!' }]}
         >
           <Input placeholder="Label in the left!" />
         </Form.Item>
@@ -339,7 +347,7 @@ const CustomForm = () => {
         <Form.Item
           label="Password"
           name="password"
-          rules={[{ required: true, message: "Please input your password!" }]}
+          rules={[{ required: true, message: 'Please input your password!' }]}
         >
           <Input.Password />
         </Form.Item>

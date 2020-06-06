@@ -1,0 +1,9 @@
+.color1 {
+  color: red !important;
+}
+
+.color2 {
+  color: white !important;
+}
+
+/* name color1 for changing color inside, not specific like color-red */

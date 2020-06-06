@@ -1,7 +1,14 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import FormInputCaptchaOTPPage from "./pages/FormInputCaptchaOTPPage";
-import HomePage from "./pages/HomePage";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import FormInputCaptchaOTPPage from './pages/FormInputCaptchaOTPPage';
+import HomePage from './pages/HomePage';
+import SortArrowsController from './components/SortArrowsController';
+import CarouselSlider from './pages/CarouselSlider';
+import './styles/height.css';
+import './styles/cursor.css';
+import './styles/transform.css';
+import './styles/index.css';
+import ArrowOfCollapse from './components/ArrowOfCollapse';
 
 function App() {
   return (
@@ -17,6 +24,15 @@ function App() {
                 Form - Input - CAPTCHA - OTP
               </Link>
             </li>
+            <li>
+              <SortArrowsController />
+            </li>
+            <li>
+              <Link to="/carousel-slider">Carousel - slider</Link>
+            </li>
+            <li>
+              <ArrowOfCollapse />
+            </li>
           </ul>
         </nav>
 
@@ -28,6 +44,9 @@ function App() {
           </Route>
           <Route path="/form-input-captcha-otp" exact>
             <FormInputCaptchaOTPPage />
+          </Route>
+          <Route path="/carousel-slider" exact>
+            <CarouselSlider />
           </Route>
           {/* <Route path="/">
             <Home />
