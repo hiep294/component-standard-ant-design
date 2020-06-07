@@ -5,7 +5,7 @@ const ArrowOfCollapse = () => {
   const [rotating, setRotating] = useState(false);
   return (
     <ArrowRightOutlined
-      className={`${rotating ? 'rotate-90' : ''}`}
+      style={{ transform: `rotate(${rotating ? '90deg' : '0deg'})` }}
       onClick={() => setRotating(!rotating)}
     />
   );

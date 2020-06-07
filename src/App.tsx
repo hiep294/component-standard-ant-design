@@ -4,10 +4,8 @@ import FormInputCaptchaOTPPage from './pages/FormInputCaptchaOTPPage';
 import HomePage from './pages/HomePage';
 import SortArrowsController from './components/SortArrowsController';
 import CarouselSlider from './pages/CarouselSlider';
-import './styles/height.css';
-import './styles/cursor.css';
-import './styles/transform.css';
-import './styles/index.css';
+import './styles/color.css';
+import './styles/shape.css';
 import ArrowOfCollapse from './components/ArrowOfCollapse';
 
 function App() {

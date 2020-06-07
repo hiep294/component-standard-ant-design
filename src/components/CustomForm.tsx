@@ -103,7 +103,7 @@ const CustomForm = () => {
           </CustomSelect>
         </Form.Item>
 
-        <div className="height-24" style={{ border: '1px solid red' }}>
+        <div style={{ border: '1px solid red', height: 24 }}>
           add more height: + 24px
         </div>
 
